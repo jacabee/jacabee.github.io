@@ -14,19 +14,17 @@ let myHeading = document.querySelector("h1");
 
 function setUserName() {
     const myName = prompt("Please enter your name.");
-    if (!myName) {
-        if (!localStorage.getItem("name")){
-            setUserName();
-            }
-        else {
-            const storedName = localStorage.getItem("name");
-            localStorage.setItem("name", storedName);
-        }
+    if ((!myName) && (!localStorage.getItem("name"))) {
+        setUserName();}
+    else if ((!myName) && (localStorage.getItem("name"))) {
+        const storedName = localStorage.getItem("name");
+        myHeading.textContent = `Hamtaro is safe, ${storedName}`;
     } else {
     localStorage.setItem("name", myName);
     myHeading.textContent = `Hamtaro is safe, ${myName}`;
     }
 }
+
 
 if (!localStorage.getItem("name")) {
     setUserName();
