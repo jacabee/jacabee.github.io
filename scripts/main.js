@@ -15,7 +15,13 @@ let myHeading = document.querySelector("h1");
 function setUserName() {
     const myName = prompt("Please enter your name.");
     if (!myName) {
-        setUserName();
+        if (!localStorage.getItem("name")){
+            setUserName();
+            }
+        else {
+            const storedName = localStorage.getItem("name");
+            localStorage.setItem("name", storedName);
+        }
     } else {
     localStorage.setItem("name", myName);
     myHeading.textContent = `Hamtaro is safe, ${myName}`;
